@@ -1,11 +1,132 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Main</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Responsive Landing Page Template With Flexbox</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+
 </head>
+
 <body>
-{% include 'pages/navbar.html' %}
-<h1>Home page - not being used</h1>
+
+<header>
+    <h2><a href="#">Website Logo</a></h2>
+    <nav>
+        <li><a href="/home/">Home</a></li>
+        <li><a href="/base_requester/">Requester</a></li>
+        <li><a href="/base_maintainer/">Maintainer</a></li>
+        <li><a href="/base_auditor/">Auditor</a></li>
+    </nav>
+</header>
+
+
+<section class="hero">
+    <div class="background-image" style="background-image: url(assets/img/hero.jpg);"></div>
+    <h1>DEVCOM</h1>
+    <h3>Hard Drive Tracking System</h3>
+    <a href="#" class="btn">REGISTER</a>
+</section>
+
+
+<section class="our-work">
+    <h3 class="title">Some of our work</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae
+        pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
+    <hr>
+
+    <ul class="grid">
+        <li class="small" style="background-image: url({% static 'assets/img/coast.jpg'%});"></li>
+        <li class="large" style="background-image: url({% static 'assets/img/island.jpg'%});"></li>
+        <li class="large" style="background-image: url({% static 'assets/img/balloon.jpg'%});"></li>
+        <li class="small" style="background-image: url({% static 'assets/img/mountain.jpg'%});"></li>
+        </div>
+	</ul>
+</section>
+
+
+<section class="features">
+	<h3 class="title">Features and services</h3>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae
+		pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
+	<hr>
+
+	<ul class="grid">
+		<li>
+			<i class="fa fa-bug"></i>
+			<h4>Identify Vulnerabilities</h4>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae
+				pulvinar velit.</p>
+		</li>
+		<li>
+			<i class="fa fa-leanpub"></i>
+			<h4>Examine Attack Paths</h4>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae
+				pulvinar velit.</p>
+		</li>
+		<li>
+			<i class="fa fa-unlock-alt"></i>
+			<h4>Evaluate Cyber Operation Capabilities</h4>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae
+				pulvinar velit.</p>
+		</li>
+		<li>
+			<i class="fa fa-user-secret"></i>
+			<h4>Establish Operation Mission Effects</h4>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae
+				pulvinar velit.</p>
+		</li>
+		</div>
+	</ul>
+</section>
+
+
+<section class="reviews">
+    <h3 class="title">What others say:</h3>
+
+    <p class="quote">Mauris sit amet mauris a arcu eleifend ultricies eget ut dolor. Class aptent taciti sociosqu ad
+        litora torquent per conubia nostra, per inceptos himenaeos.</p>
+    <p class="author">— Vince</p>
+
+    <p class="quote">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum
+        ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
+    <p class="author">— Alexis</p>
+
+    <p class="quote">Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar
+        ornare. Integer eu iaculis metus.</p>
+    <p class="author">— Joshua</p>
+
+
+</section>
+
+
+<section class="contact">
+    <h3 class="title">Join our newsletter</h3>
+    <p>TEXT GOES HERE</p>
+    <hr>
+
+    <form>
+        <input type="email" placeholder="Email">
+        <a href="#" class="btn">Subscribe now</a>
+    </form>
+</section>
+
+<footer>
+    <ul>
+        <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+        <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+        <li><a href="#"><i class="fa fa-snapchat-square"></i></a></li>
+        <li><a href="#"><i class="fa fa-pinterest-square"></i></a></li>
+        <li><a href="#"><i class="fa fa-github-square"></i></a></li>
+    </ul>
+</footer>
+
 </body>
+
 </html>
