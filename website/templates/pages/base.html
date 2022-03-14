@@ -15,27 +15,34 @@
 </head>
 
 <body>
-
 <header>
     <h2><a href="#">Website Logo</a></h2>
-    <nav>
-        <li><a href="/home/">Home</a></li>
-        <li><a href="/base_requester/">Requester</a></li>
-        <li><a href="/base_maintainer/">Maintainer</a></li>
-        <li><a href="/base_auditor/">Auditor</a></li>
-    </nav>
+    {% block navbar %}
+    {% include 'pages/navbar_base.html' %}
+    {% endblock %}
 </header>
 
 
 <section class="hero">
-    <div class="background-image" style="background-image: url(assets/img/hero.jpg);"></div>
+    {% block section1 %}
+    <div class="background-image" style="background-image: url({% static 'assets/img/hero.jpg' %});"></div>
     <h1>DEVCOM</h1>
     <h3>Hard Drive Tracking System</h3>
     <a href="#" class="btn">REGISTER</a>
+    {% endblock %}
 </section>
 
+<section class="hero">
+    {% block section2 %}
+    <div class="background-image" style="background-image: url({% static 'assets/img/coast.jpg' %});"></div>
+    <h1>This is a section 2 I can work In</h1>
+    <h3>I can change stuff here too</h3>
+    <a href="#" class="btn">Example button</a>
+    {% endblock %}
+</section>
 
 <section class="our-work">
+    {% block ourWorkSection %}
     <h3 class="title">Some of our work</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae
         pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
@@ -46,12 +53,13 @@
         <li class="large" style="background-image: url({% static 'assets/img/island.jpg'%});"></li>
         <li class="large" style="background-image: url({% static 'assets/img/balloon.jpg'%});"></li>
         <li class="small" style="background-image: url({% static 'assets/img/mountain.jpg'%});"></li>
-        </div>
-	</ul>
+    </ul>
+    {% endblock %}
 </section>
 
 
 <section class="features">
+    {% block featureSection %}
 	<h3 class="title">Features and services</h3>
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae
 		pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
@@ -82,12 +90,13 @@
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae
 				pulvinar velit.</p>
 		</li>
-		</div>
 	</ul>
+    {% endblock %}
 </section>
 
 
 <section class="reviews">
+    {% block reviewSection %}
     <h3 class="title">What others say:</h3>
 
     <p class="quote">Mauris sit amet mauris a arcu eleifend ultricies eget ut dolor. Class aptent taciti sociosqu ad
@@ -101,12 +110,12 @@
     <p class="quote">Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar
         ornare. Integer eu iaculis metus.</p>
     <p class="author">— Joshua</p>
-
-
+    {% endblock %}
 </section>
 
 
 <section class="contact">
+    {% block contactSection %}
     <h3 class="title">Join our newsletter</h3>
     <p>TEXT GOES HERE</p>
     <hr>
@@ -115,6 +124,7 @@
         <input type="email" placeholder="Email">
         <a href="#" class="btn">Subscribe now</a>
     </form>
+    {% endblock %}
 </section>
 
 <footer>

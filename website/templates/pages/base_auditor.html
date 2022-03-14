@@ -1,12 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Maintainer</title>
-</head>
-<body>
-{% include 'pages/navbar_auditor.html' %}
-<h1>Auditor View</h1>
+{% extends 'pages/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block navbar %}
+{% include 'pages/navbar_auditor.html' %}
+{% endblock %}
+
+{% block section1 %}
+<div class="background-image" style="background-image: url({% static 'assets/img/island.jpg' %});"></div>
+<h1>This is a section 2 I can work In</h1>
+<h3>Change me fam</h3>
+<a href="#" class="btn">Just a button</a>
+{% endblock %}
+
+{% block section2 %}
+<div class="background-image" style="background-image: url({% static 'assets/img/mountain.jpg' %});"></div>
+<h1>This is a section 2 I can work In</h1>
+<h3>I can change stuff here too</h3>
+<a href="#" class="btn">Example button</a>
+{% endblock %}
+
+{% block ourWorkSection %}
+<h3 class="title">more work can go here or leave empty</h3>
+<p>I can add some pictures here...maybe.</p>
+<hr>
+
+<ul class="grid">
+    <li class="small" style="background-image: url({% static 'assets/img/devcom_logo.png'%});"></li>
+</ul>
+{% endblock %}
+
+
+{% block featureSection %}
+<h3 class="title">Feature section if needed</h3>
+<p>Editable field</p>
+<hr>
+
+<ul class="grid">
+    <li>
+        <i class="fa fa-user-secret"></i>
+        <h4>I can add a cool icon if I want</h4>
+        <p>Dummy text, although I ain't no dummy.</p>
+    </li>
+</ul>
+{% endblock %}
+
+
+{% block reviewSection %}
+<h3 class="title">What others say:</h3>
+
+<p class="quote">I am editable, give me something nice to say</p>
+<p class="author">— Team1</p>
+
+{% endblock %}
+
+
+{% block contactSection %}
+<h3 class="title">I can change this or delete this</h3>
+<p>TEXT GOES HERE</p>
+<hr>
+<form>
+    <input type="email" placeholder="Email">
+    <a href="#" class="btn">Subscribe now</a>
+</form>
+{% endblock %}
