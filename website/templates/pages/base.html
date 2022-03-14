@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Responsive Landing Page Template With Flexbox</title>
+    <title>HDTS</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -22,9 +22,9 @@
     {% endblock %}
 </header>
 
-
+{% block mainBody %}
 <section class="hero">
-    {% block section1 %}
+    {% block section1Body %}
     <div class="background-image" style="background-image: url({% static 'assets/img/hero.jpg' %});"></div>
     <h1>DEVCOM</h1>
     <h3>Hard Drive Tracking System</h3>
@@ -32,17 +32,7 @@
     {% endblock %}
 </section>
 
-<section class="hero">
-    {% block section2 %}
-    <div class="background-image" style="background-image: url({% static 'assets/img/coast.jpg' %});"></div>
-    <h1>This is a section 2 I can work In</h1>
-    <h3>I can change stuff here too</h3>
-    <a href="#" class="btn">Example button</a>
-    {% endblock %}
-</section>
-
 <section class="our-work">
-    {% block ourWorkSection %}
     <h3 class="title">Some of our work</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae
         pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
@@ -54,12 +44,10 @@
         <li class="large" style="background-image: url({% static 'assets/img/balloon.jpg'%});"></li>
         <li class="small" style="background-image: url({% static 'assets/img/mountain.jpg'%});"></li>
     </ul>
-    {% endblock %}
 </section>
 
 
 <section class="features">
-    {% block featureSection %}
 	<h3 class="title">Features and services</h3>
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae
 		pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
@@ -91,12 +79,10 @@
 				pulvinar velit.</p>
 		</li>
 	</ul>
-    {% endblock %}
 </section>
 
 
 <section class="reviews">
-    {% block reviewSection %}
     <h3 class="title">What others say:</h3>
 
     <p class="quote">Mauris sit amet mauris a arcu eleifend ultricies eget ut dolor. Class aptent taciti sociosqu ad
@@ -110,12 +96,9 @@
     <p class="quote">Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar
         ornare. Integer eu iaculis metus.</p>
     <p class="author">— Joshua</p>
-    {% endblock %}
 </section>
 
-
 <section class="contact">
-    {% block contactSection %}
     <h3 class="title">Join our newsletter</h3>
     <p>TEXT GOES HERE</p>
     <hr>
@@ -124,8 +107,8 @@
         <input type="email" placeholder="Email">
         <a href="#" class="btn">Subscribe now</a>
     </form>
-    {% endblock %}
 </section>
+{% endblock %}
 
 <footer>
     <ul>
@@ -136,7 +119,5 @@
         <li><a href="#"><i class="fa fa-github-square"></i></a></li>
     </ul>
 </footer>
-
 </body>
-
 </html>
