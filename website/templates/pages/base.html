@@ -16,7 +16,7 @@
 
 <body>
 <header>
-    <h2><a href="#">Website Logo</a></h2>
+    <h2><a href="/base/">Website Logo</a></h2>
     {% block navbar %}
     {% include 'pages/navbar_base.html' %}
     {% endblock %}
@@ -24,12 +24,15 @@
 
 {% block mainBody %}
 <section class="hero">
-    {% block section1Body %}
+    {% if request.user.is_authenticated %}
+    <p style="text-align:center;">Hello, {{request.user}} <a href="{% url 'logoutUser' %}"><span
+            style="color:rgba(201, 219, 10, 0.9);">[Logout]</span></a></p>
+    {% endif %}
+
     <div class="background-image" style="background-image: url({% static 'assets/img/hero.jpg' %});"></div>
     <h1>DEVCOM</h1>
     <h3>Hard Drive Tracking System</h3>
-    <a href="#" class="btn">REGISTER</a>
-    {% endblock %}
+    <a href="/register/" class="btn">REGISTER</a>
 </section>
 
 <section class="our-work">

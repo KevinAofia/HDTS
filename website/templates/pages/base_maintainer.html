@@ -7,6 +7,9 @@
 
 {% block mainBody %}
 <section class="hero">
+    <p style="text-align:center;">Maintainer: {{request.user}} <a href="{% url 'logoutUser' %}"><span
+            style="color:rgba(201, 219, 10, 0.9);">[Logout]</span></a></p>
+
     <div class="background-image" style="background-image: url({% static 'assets/img/balloon.jpg' %});"></div>
     <h1>Maintainer maintains what needs to be maintained</h1>
     <h3>Hard Drive Tracking System</h3>
@@ -23,16 +26,16 @@
 </section>
 
 <section class="features">
-    <h3 class="title">Features n ish-deletable</h3>
-    <p>Wyngardium levi-o-sa.</p>
-    <hr>
-    <ul class="grid">
-        <li>
-            <i class="fa fa-user-secret"></i>
-            <h4>Mission pass cheons class</h4>
-            <p>Yah dee dah dee dah dee dah.</p>
-        </li>
-    </ul>
+	<h3 class="title">Features n ish-deletable</h3>
+	<p>Wyngardium levi-o-sa.</p>
+	<hr>
+	<ul class="grid">
+		<li>
+			<i class="fa fa-user-secret"></i>
+			<h4>Mission pass cheons class</h4>
+			<p>Yah dee dah dee dah dee dah.</p>
+		</li>
+	</ul>
 </section>
 
 

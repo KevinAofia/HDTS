@@ -1,11 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hard Drives</title>
-</head>
-<body>
-Hard Drives
+{% extends 'pages/base_maintainer.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block navbar %}
+{% include 'pages/navbar_maintainer.html' %}
+{% endblock %}
+
+{% block mainBody %}
+<section class="hero">
+    <div class="background-image" style="background-image: url({% static 'assets/img/dark.jpg' %});"></div>
+    <h1>Maintainer maintains what needs to be maintained</h1>
+    <h3>Hard Drive Tracking System</h3>
+    <a href="#" class="btn">Bet you won't click me</a>
+</section>
+
+<div>
+    Hard Drives<br>
+    {% for hd in hard_drives %}
+    {{hd.creationDate}}<br>
+    {{hd.serialNumber}}<br>
+    {{hd.manufacturer}}<br>
+    {{hd.modelNumber}}<br>
+    {{hd.type}}<br>
+    {{hd.connectionPort}}<br>
+    {{hd.size}}<br>
+    {{hd.classification}}<br>
+    {{hd.classificationChangeJustification}}<br>
+    {{hd.imageVersionID}}<br>
+    {{hd.bootTestStatus}}<br>
+    {{hd.bootTestExpirationDate}}<br>
+    {{hd.status}}<br>
+    {{hd.hardDriveStatusChangeJustification}}<br>
+    {{hd.dateIssued}}<br>
+    {{hd.expectedReturnDate}}<br>
+    {{hd.hardDriveReturnDateJustification}}<br>
+    {{hd.actualReturnDate}}<br>
+    {{hd.dateModified}}<br>
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

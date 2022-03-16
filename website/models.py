@@ -91,7 +91,8 @@ class Requester(models.Model):
     password = models.CharField(max_length=50)  # required
     directSupervisorEmail = models.EmailField(max_length=254)  # required
     branchChiefEmail = models.EmailField(max_length=254)  # required
-    requesterStatus = requester_status_choices  # required
+    requesterStatus = models.CharField(max_length=50,choices=requester_status_choices ,blank=False, null=False)  # required
+
 
     def __str__(self):  # uncomment to see default name in /admin
         full_name = (str(self.firstName), str(self.lastName))
@@ -111,7 +112,7 @@ class Maintainer(models.Model):
     email = models.EmailField(max_length=254)  # required
     username = models.CharField(max_length=50)  # required
     password = models.CharField(max_length=50)  # required
-    maintainerStatus = maintainer_status_choices  # required
+    maintainerStatus = models.CharField(max_length=50,choices=maintainer_status_choices ,blank=False, null=False)  # required
 
     def __str__(self):  # uncomment to see default name in /admin
         full_name = (str(self.firstName), str(self.lastName))
@@ -122,8 +123,8 @@ class Maintainer(models.Model):
 class Auditor(models.Model):
     # Denise
     auditor_status_choices = (
-        ("authorized", "authorized"),
-        ("unauthorized", "unauthorized"),
+        ("Authorized", "Authorized"),
+        ("Unauthorized", "Unauthorized"),
         ("Archived", "Archived"),
     )
     firstName = models.CharField(max_length=100)  # required
@@ -131,7 +132,7 @@ class Auditor(models.Model):
     email = models.EmailField(max_length=254)  # required
     username = models.CharField(max_length=50)  # required
     password = models.CharField(max_length=50)  # required
-    auditorStatus = auditor_status_choices  # required
+    auditorStatus = models.CharField(max_length=50,choices=auditor_status_choices ,blank=False, null=False) # required
 
     def __str__(self):  # uncomment to see default name in /admin
         full_name = (str(self.firstName), str(self.lastName))
@@ -188,13 +189,22 @@ class Event(models.Model):
 
 # Jacob and Bryant
 class Request(models.Model):
+    # Denise
+    status_choices = (
+        ("Pending Approval", "Pending Approval"),
+        ("Under Review", "Under Review"),
+        ("Approved", "Approved"),
+        ("Denied", "Denied"),
+        ("Cancelled", "Cancelled"),
+        ("Completed", "Completed"),
+    )
     receiptNumber = models.CharField(max_length=50, blank=False, null=False)  # required
-    status = models.CharField(max_length=50, blank=False, null=False)  # required
-    creationDate = models.CharField(max_length=50, blank=False, null=False)  # required
-    dataOfLastModification = models.CharField(max_length=50, blank=False, null=False)  # required
-    needHardDrivesByDate = models.CharField(max_length=50, blank=False, null=False)  # required
-    numberOfClassifiedHardDrivesNeeded = models.CharField(max_length=50, blank=False, null=False)  # required
-    numberOfUnclassifiedHardDrivesNeeded = models.CharField(max_length=50, blank=False, null=False)  # required
+    status = models.CharField(max_length=50,choices=status_choices ,blank=False, null=False)  # required
+    creationDate = models.DateField(max_length=254)  # required
+    dataOfLastModification = models.DateField(max_length=254)  # required
+    needHardDrivesByDate = models.DateField(max_length=254)  # required
+    numberOfClassifiedHardDrivesNeeded = models.PositiveIntegerField(default=0)  # required
+    numberOfUnclassifiedHardDrivesNeeded = models.PositiveIntegerField(default=0)  # required
     comment = models.CharField(max_length=1000)
 
     def __str__(self):  # uncomment to see default name in /admin
