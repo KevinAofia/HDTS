@@ -23,8 +23,3 @@ class LoginForm(ModelForm):
             'username',
             'password',
         ]
-
-class CreateRequester(ModelForm):
-    class Meta:
-        model = Requester
-        fields = '__all__'

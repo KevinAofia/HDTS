@@ -1,8 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
 
-# the purpose of the decorators is to reduce redudant redirect code in our views
-
+# the purpose of the decorators is to reduce redundant redirect code in our views
 def unauthenticated_user(view_func):
     def wrapper_func(request, *args, **kwargs):
         # if user is already logged in, redirect home

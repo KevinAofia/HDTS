@@ -8,14 +8,14 @@
 
 <section class="hero">
     <div class="background-image" style="background-image: url({% static 'assets/img/dark.jpg' %});"></div>
-    <h2>LOGIN</h2><br>
+    <h2>REGISTER</h2><br>
     <form method="POST">
         {% csrf_token %}
-        {% for field in login_form %}
+        {% for field in register_form %}
         {{field.label}}<br>
         {{field}}<br><br>
         {% endfor %}
-        {{login_form.errors}}
+        {{register_form.errors}}
         <input type="submit" name="Create User">
     </form>
 </section>

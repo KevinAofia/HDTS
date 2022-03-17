@@ -9,49 +9,71 @@
 <section class="hero">
     <p style="text-align:center;">Maintainer: {{request.user}} <a href="{% url 'logoutUser' %}"><span
             style="color:rgba(201, 219, 10, 0.9);">[Logout]</span></a></p>
-
     <div class="background-image" style="background-image: url({% static 'assets/img/balloon.jpg' %});"></div>
-    <h1>Maintainer maintains what needs to be maintained</h1>
+    <h1>Maintainer Home Page</h1>
     <h3>Hard Drive Tracking System</h3>
-    <a href="#" class="btn">Bet you won't click me</a>
-</section>
+    <h2 class="title">User Summary</h2><br>
+    <h4>Requesters</h4>
+    {%for each_user in requesters%}
+    {{each_user.first_name}} {{each_user.last_name}} |
+    {{each_user.requester_status}} |
+    {% if each_user.user in requester_group %}Permission Granted{% else %}Permission Denied{% endif %}
+    <br>
+    {%endfor%}<br><br>
 
-<section class="our-work">
-    <h3 class="title">some other section that you can delete</h3>
-    <p>This section shows my work, it is blank because i haven't done anything yet, duh!.</p>
+    <h4>Maintainers</h4>
+    {%for each_user in maintainers%}
+    {{each_user.first_name}} {{each_user.last_name}} |
+    {{each_user.maintainer_status}} |
+    {% if each_user.user in maintainer_group %}Permission Granted{% else %}Permission Denied{% endif %}
+    <br>
+    {%endfor%}<br><br>
+
+    <h4>Auditors</h4>
+    {%for each_user in auditors%}
+    {{each_user.first_name}} {{each_user.last_name}} |
+    {{each_user.auditor_status}} |
+    {% if each_user.user in auditor_group %}Permission Granted{% else %}Permission Denied{% endif %}
+    <br>
+    {%endfor%}
+    <br>
     <hr>
-    <ul class="grid">
-        <li class="small" style="background-image: url({% static 'assets/img/devcom_logo.png'%});"></li>
-    </ul>
-</section>
 
-<section class="features">
-	<h3 class="title">Features n ish-deletable</h3>
-	<p>Wyngardium levi-o-sa.</p>
-	<hr>
-	<ul class="grid">
-		<li>
-			<i class="fa fa-user-secret"></i>
-			<h4>Mission pass cheons class</h4>
-			<p>Yah dee dah dee dah dee dah.</p>
-		</li>
-	</ul>
-</section>
-
-
-<section class="reviews">
-    <h3 class="title">What dem peeple say: - deletable</h3>
-    <p class="quote">The is dummy text but i aint no dummy.</p>
-    <p class="author">— team1</p>
-</section>
-
-<section class="contact">
-    <h3 class="title">Join the cult-jk delete me</h3>
-    <p>TEXT GOES HERE</p>
+    <h2 class="title">Request Summary</h2><br>
+    {%for each_request in requests %}
+    Receipt Number<br>
+    {{each_request.receipt_number}}<br>
+    Username | Event Lead & Participants<br>
+    {{each_request.requester.user.username}} | {{each_request.event}}<br>
+    Hard Drives Assigned<br>
+    {% for hard_drive in each_request.hard_drive.all %}
+    {{ hard_drive.serial_number}}<br>
+    {% endfor %}
+    Status<br>
+    {{each_request.status}}
+    <br><br>
+    {%endfor%}
+    <br>
     <hr>
-    <form>
-        <input type="email" placeholder="Email">
-        <a href="#" class="btn">Catch me outside howbahdah</a>
-    </form>
+
+    <h2 class="title">Hard Drive Summary</h2><br>
+    {%for each_hard_drive in hard_drives %}
+    {{each_hard_drive.serial_number}}<br>
+    {{each_hard_drive.request}} | {{each_hard_drive.status}}<br>
+    <br>
+    {%endfor%}
+	<br>
+    <hr>
+
+    <h2 class="title">Event Summary</h2><br>
+    {%for each_event in events %}
+    {{each_event.name}}<br>
+    {{each_event.lead}} | {{each_event.type}} | {{each_event.status}}<br>
+    <br>
+    {%endfor%}
+	<br>
+    <hr>
+
 </section>
+
 {% endblock %}

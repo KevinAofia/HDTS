@@ -1,0 +1,17 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+{% block navbar %}
+{% include 'pages/navbar_auditor.html' %}
+{% endblock %}
+
+{% block mainBody %}
+<section class="hero">
+    <p style="text-align:center;">Auditor: {{request.user}} <a href="{% url 'logoutUser' %}"><span
+            style="color:rgba(201, 219, 10, 0.9);">[Logout]</span></a></p>
+    <div class="background-image" style="background-image: url({% static 'assets/img/island.jpg' %});"></div>
+    <h1>Auditor-Reports Detailed View</h1>
+    <h3>Hard Drive Tracking System</h3>
+
+</section>
+{% endblock %}
