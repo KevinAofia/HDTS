@@ -39,6 +39,10 @@
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="76b70b27-a1c1-409f-a9ac-600af3cf6b08" dataset="main.auth_user" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="76b70b27-a1c1-409f-a9ac-600af3cf6b08" dataset="main.website_requester" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="76b70b27-a1c1-409f-a9ac-600af3cf6b08" dataset="main.website_auditor" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="76b70b27-a1c1-409f-a9ac-600af3cf6b08" dataset="main.website_event" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="76b70b27-a1c1-409f-a9ac-600af3cf6b08" dataset="main.website_maintainer" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />

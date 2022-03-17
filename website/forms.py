@@ -4,10 +4,12 @@ from django.contrib.auth.models import User
 
 from . models import Requester
 
-class CreateBasicUserForm(UserCreationForm):
+class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = [
+            'first_name',
+            'last_name',
             'username',
             'email',
             'password1',
@@ -25,12 +27,4 @@ class LoginForm(ModelForm):
 class CreateRequester(ModelForm):
     class Meta:
         model = Requester
-        fields = [
-            'firstName',
-            'lastName',
-            'email',
-            'username',
-            'password',
-            'directSupervisorEmail',
-            'branchChiefEmail'
-        ]
+        fields = '__all__'

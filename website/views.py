@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group
 
 # Create your views here.
 from .models import *
-from .forms import CreateBasicUserForm, CreateRequester, LoginForm
+from .forms import CreateUserForm, CreateRequester, LoginForm
 from .decorators import unauthenticated_user, allowed_users
 from django.contrib.auth.decorators import login_required
 
@@ -15,14 +15,29 @@ def base(request):
 
 @unauthenticated_user
 def registerPage(request):
-    register_form = CreateBasicUserForm()
+    register_form = CreateUserForm()
     if request.method == 'POST':
-        register_form = CreateBasicUserForm(request.POST)
+        register_form = CreateUserForm(request.POST)
         if register_form.is_valid():
             user = register_form.save()
 
             group = Group.objects.get(name='requester')
             user.groups.add(group)
+            # Requester.objects.create(
+            #     user=user,
+            #     first_name=user.first_name,
+            #     last_name=user.last_name,
+            #     username=user.username,
+            #     password=user.password
+            # )
+            #
+            # Maintainer.objects.create(
+            #     user=user
+            # )
+            # Auditor.objects.create(
+            #     user=user
+            # )
+
 
             return redirect('loginPage')  # redirect to login following registration
 
