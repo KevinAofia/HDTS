@@ -12,6 +12,313 @@
     <div class="background-image" style="background-image: url({% static 'assets/img/island.jpg' %});"></div>
     <h1>Requester-Requests Detailed View</h1>
     <h3>Hard Drive Tracking System</h3>
+
+    <!--Search-->
+		<form style="text-align:center;">
+			<h1 style="color: black; font-size: 25px;">Request Attribute</h1>
+			<label for "Request Reference No.">Request Reference No.</label><br>
+			<input type="text" id="Request Reference No." name="Request Reference No."><br>
+			<br>
+			<label for "Request Status">Request Status</label><br>
+			<select name="Request Status" id="Request Status">
+				<option value="Confirmed">Confirmed</option>
+			</select><br>
+			<br>
+			<h1 style="color: black; font-size: 25px;">Hard Drive Attribute</h1>
+			<label for "Total No. of Drives">Total No. of Drives</label><br>
+			<input type="radio" id="Less than" name="Less than" value="Less than">
+			<label for="Less than">Less than</label><br>
+			<input type="radio" id="Equal" name="Equal" value="Equal">
+			<label for="Equal">Equal</label><br>
+			<input type="radio" id="Greater than" name="Greater than" value="Greater than">
+			<label for="Greater than">Greater than</label><br>
+			<br>
+			<h1 style="color: black; font-size: 25px;">Event Attribute</h1>
+			<label for "Username">Username</label><br>
+			<input type="text" id="Username" name="Username"><br>
+			<br>
+			<label for "Event Type">Event Type</label><br>
+			<select name="Event Type" id="Event Type">
+				<option value="Training">Training</option>
+			</select><br>
+			<br>
+			<h1 style="color: black; font-size: 25px;">Date</h1>
+			<label for="Event Start Date">Event Start Date</label><br>
+			<input type="date" id="Event Start Date" name="Event Start Date"><br>
+			<br>
+			<label for="Event End Date">Event End Date</label><br>
+			<input type="date" id="Event End Date" name="Event End Date"><br>
+			<br>
+			<label for="Request Date">Request Date</label><br>
+			<input type="date" id="Request Date" name="Request Date"><br>
+			<br>
+			<label for="Need Drive Due by Date">Need Drive Due by Date</label><br>
+			<input type="date" id="Need Drive Due by Date" name="Need Drive Due by Date"><br>
+			<br>
+			<h1 style="color: black; font-size: 25px;">Keyword</h1>
+			<label for "Expression">Expression</label><br>
+			<input type="text" id="Expression" name="Expression"><br>
+			<br>
+			<br>
+			<input type="submit" value="Search" style="font-size: 25px;">
+		</form>
+        <br>
+        <br>
+        <!--Request Information-->
+		<form style="text-align:center;">
+			<h1 style="color: black; font-size: 25px;">Summary View of Requests</h1>
+			<style>
+				table,
+				th,
+				td {
+					border: 1px solid black;
+				}
+			</style>
+
+			<body>
+				<input type="checkbox" id="Select/Unselect All" name="Select/Unselect All">
+				<label for "Select/Unselect All">Select/Unselect All</label><br>
+				<table style="width: 100%">
+					<tr>
+						<th><input type="checkbox" id="Request Reference No." name="Request Reference No."> Request Reference No.</th>
+						<th><input type="checkbox" id="Request Date" name="Request Date"> Request Date</th>
+						<th><input type="checkbox" id="Event Start Date" name="Event Start Date"> Event Start Date</th>
+						<th><input type="checkbox" id="Event End Date" name="Event End Date"> Event End Date</th>
+						<th><input type="checkbox" id="Need Drive Due by Date" name="Need Drive Due by Date"> Need Drive
+							Due by Date</th>
+						<th><input type="checkbox" id="Event Name" name="Event Name"> Event Name</th>
+						<th><input type="checkbox" id="Event Description" name="Event Description"> Event Description
+						</th>
+						<th><input type="checkbox" id="Event Type" name="Event Type"> Event Type</th>
+						<th><input type="checkbox" id="Event Lead Username" name="Event Lead Username">Event Lead
+							Username</th>
+						<th><input type="checkbox" id="Request Status" name="Request Status"> Request Status</th>
+					</tr>
+					<tr>
+						<td>774369</td>
+						<td>3/1/2022</td>
+						<td>3/7/2022</td>
+						<td>3/17/2022</td>
+						<td>3/20/2022</td>
+						<td>Training</td>
+						<td>Scan data for Military Training</td>
+						<td>Data Training</td>
+						<td>DataMan7711</td>
+						<td>Confirmed</td>
+					</tr>
+				</table>
+			</body>
+			<input type="submit" value="Clone Request" style="font-size: 20px;">
+			<a href="request"><input type="button" value="Add Request" style="font-size: 20px;"
+					class="btn btn-primary" /></a><br>
+			<br>
+			<br>
+            <!--Detailed View of a Selected Request-->
+			<h1 style="color: red; font-size: 30px;">Event Information</h1>
+			<h1 style="color: black; font-size: 25px;">Event Attributes</h1>
+			<label for "Event Name">Event Name</label><br>
+			<input type="text" id="Event Name" name="Event Name"><br>
+			<br>
+			<label for "Event Description">Event Description</label><br>
+			<input type="text" id="Event Description" name="Event Description"><br>
+            <input type="file" id="Event Description" style="margin-left: 90px;" name="Event Description"><br>
+			<br>
+			<label for "Event Location">Event Location</label><br>
+			<input type="text" id="Event Location" name="Event Location"><br>
+			<br>
+			<label for "Event Type">Event Type</label><br>
+			<select name="Event Type" id="Event Type">
+				<option value="Data Training">Data Training</option>
+			</select><br>
+			<br>
+			<label for "Length of Reporting Cycle">Length of Reporting Cycle</label><br>
+			<input type="text" id="Length of Reporting Cycle" name="Length of Reporting Cycle"><br>
+			<br>
+			<label for "Event Status">Event Status</label><br>
+			<select name="Event Status" id="Event Status">
+				<option value="Confirmed">Confirmed</option>
+			</select><br>
+			<br>
+			<h1 style="color: black; font-size: 25px;">Event Dates</h1>
+			<label for="Event Start Date">Event Start Date</label><br>
+			<input type="date" id="Event Start Date" name="Event Start Date"><br>
+			<br>
+			<label for="Event End Date">Event End Date</label><br>
+			<input type="date" id="Event End Date" name="Event End Date"><br>
+			<br>
+			<h1 style="color: black; font-size: 25px;">Event Participants</h1>
+			<label for "Event Team Lead Name*">Event Team Lead Name*</label><br>
+			<select name="Event Team Lead Name*" id="Event Team Lead Name*">
+				<option value="DataMan7711">DataMan7711</option>
+			</select><br>
+			<br>
+			<label for "Event Team Analyst Name">Event Team Analyst Name</label><br>
+			<select name="Event Team Analyst Name" id="Event Team Analyst Name">
+				<option value="AnalystMan7711">AnalystMan7711</option>
+				<option value="AnalyzeDataDude7711">AnalyzeDataDude7711</option>
+			</select><br>
+            <br>
+            <br>
+			<form style="margin-left: 560px; margin-top: -800px;">
+				<h1 style="color: red; font-size: 30px;">Hard Drive Request</h1>
+				<style>
+					table,
+					th,
+					td {
+						border: 1px solid black;
+					}
+				</style>
+
+				<body>
+					<input type="checkbox" id="Select/Unselect All" name="Select/Unselect All">
+					<label for "Select/Unselect All">Select/Unselect All</label><br>
+					<table style="width: 100%">
+						<tr>
+							<th><input type="checkbox" id="Hard Drive Classification" name="Hard Drive Classification">
+								Hard Drive Classification</th>
+							<th><input type="checkbox" id="Amount Required*" name="Amount Required*"> Amount Required*
+							</th>
+							<th><input type="checkbox" id="Connection Port Type" name="Connection Port Type"> Connection
+								Port Type</th>
+							<th><input type="checkbox" id="Hard Drive Size" name="Hard Drive Size"> Hard Drive Size</th>
+							<th><input type="checkbox" id="Hard Drive Type" name="Hard Drive Type"> Hard Drive Type</th>
+						</tr>
+						<tr>
+							<td>Classified</td>
+							<td>05</td>
+							<td>Serial</td>
+							<td>200GB</td>
+							<td>SATA</td>
+						</tr>
+					</table>
+				</body>
+				<br>
+				<label for "Comments">Comments</label><br>
+				<textarea rows="4" cols="50" name="comment" form="usrform">Enter text here...</textarea><br>
+				<input type="submit" value="Add" style="font-size: 15px; margin-left: 280px;">
+				<input type="submit" value="Delete" style="font-size: 15px;">
+				<br>
+				<br>
+				<br>
+				<h1 style="color: red; font-size: 30px;">Hard Drive Assignment (Requestors only)</h1>
+				<input type="checkbox" id="Select/Unselect All" name="Select/Unselect All">
+				<label for "Select/Unselect All">Select/Unselect All</label>
+				<table style="width: 100%">
+					<tr>
+						<th><input type="checkbox" id="Issue Date" name="Issue Date"> Issue Date</th>
+						<th><input type="checkbox" id="Modified Date" name="Modified Date"> Modified Date</th>
+						<th><input type="checkbox" id="Request Reference" name="Request Reference"> Request Reference
+						</th>
+						<th><input type="checkbox" id="Hard Drive Serial Number" name="Hard Drive Serial Number"> Hard
+							Drive Serial Number</th>
+						<th><input type="checkbox" id="Hard Drive Status" name="Hard Drive Status"> Hard Drive Status
+						</th>
+						<th><input type="checkbox" id="Manufacturer" name="Manufacturer"> Manufacturer</th>
+						<th><input type="checkbox" id="Model No." name="Model No."> Model No.</th>
+						<th><input type="checkbox" id="Hard Drive Classification" name="Hard Drive Classification"> Hard
+							Drive Classification</th>
+						<th><input type="checkbox" id="Hard Drive Connection Port" name="Hard Drive Connection Port">
+							Hard Drive Connection Port</th>
+						<th><input type="checkbox" id="Hard Drive Size" name="Hard Drive Size"> Hard Drive Size</th>
+						<th><input type="checkbox" id="Hard Drive Type" name="Hard Drive Type"> Hard Drive Type</th>
+						<th><input type="checkbox" id="Expected Hard Drive Return Date"
+								name="Expected Hard Drive Return Date"> Expected Hard Drive Return Date</th>
+						<th><input type="checkbox" id="Justification for Expected Hard Drive Return Date Change"
+								name="Justification for Expected Hard Drive Return Date Change"> Justification for
+							Expected Hard Drive Return Date Change</th>
+						<th><input type="checkbox" id="Actual Hard Drive Return Date"
+								name="Actual Hard Drive Return Date"> Actual Hard Drive Return Date</th>
+					</tr>
+					<tr>
+						<td>3/1/2022</td>
+						<td>3/7/2022</td>
+						<td>Null</td>
+						<td>5QEU4369</td>
+						<td>PASS</td>
+						<td>SanDisk</td>
+						<td>01</td>
+						<td>Classified</td>
+						<td>Serial</td>
+						<td>200GB</td>
+						<td>SATA</td>
+						<td>3/10/2022</td>
+						<td>Urgent</td>
+						<td>3/12/2022</td>
+					</tr>
+				</table>
+</body>
+<input type="submit" value="Confirm Pickup" style="font-size: 15px;"><br>
+<br>
+<br>
+<h1 style="color: red; font-size: 30px;">Hard Drive Assignment (Maintainers only)</h1>
+<input type="checkbox" id="Select/Unselect All" name="Select/Unselect All">
+<label for "Select/Unselect All">Select/Unselect All</label>
+<table style="width: 100%">
+	<tr>
+		<th><input type="checkbox" id="Creation Date" name="Creation Date"> Creation Date</th>
+		<th><input type="checkbox" id="Hard Drive Serial Number" name="Hard Drive Serial Number"> Hard Drive Serial
+			Number</th>
+		<th><input type="checkbox" id="Manufacturer" name="Manufacturer"> Manufacturer</th>
+		<th><input type="checkbox" id="Model No." name="Model No."> Model No.</th>
+		<th><input type="checkbox" id="Hard Drive Type" name="Hard Drive Type"> Hard Drive Type</th>
+		<th><input type="checkbox" id="Hard Drive Connection Port" name="Hard Drive Connection Port"> Hard Drive
+			Connection Port</th>
+		<th><input type="checkbox" id="Hard Drive Size" name="Hard Drive Size"> Hard Drive Size</th>
+		<th><input type="checkbox" id="Hard Drive Classification" name="Hard Drive Classification"> Hard Drive
+			Classification</th>
+		<th><input type="checkbox" id="Justification for Hard Drive Classification Change"
+				name="Justification for Hard Drive Classification Change"> Justification for Hard Drive Classification
+			Change</th>
+		<th><input type="checkbox" id="Image Version ID" name="Image Version ID"> Image Version ID</th>
+		<th><input type="checkbox" id="Boot Test Status" name="Boot Test Status"> Boot Test Status</th>
+		<th><input type="checkbox" id="Boot Test Experation Date" name="Boot Test Experation Date"> Boot Test Experation
+			Date</th>
+		<th><input type="checkbox" id="Hard Drive Status" name="Hard Drive Status"> Hard Drive Status</th>
+		<th><input type="checkbox" id="Justification for Status Change" name="Justification for Status Change">
+			Justification for Status Change</th>
+		<th><input type="checkbox" id="Issue Date" name="Issue Date"> Issue Date</th>
+		<th><input type="checkbox" id="Expected Hard Drive Return Date" name="Expected Hard Drive Return Date"> Expected
+			Hard Drive Return Date</th>
+		<th><input type="checkbox" id="Justification for Hard Drive Return Date Change"
+				name="Justification for Hard Drive Return Date Change"> Justification for Hard Drive Return Date Change
+		</th>
+		<th><input type="checkbox" id="Actual Hard Drive Return Date" name="Actual Hard Drive Return Date"> Actual Hard
+			Drive Return Date</th>
+		<th><input type="checkbox" id="Request Reference" name="Request Reference"> Request Reference</th>
+		<th><input type="checkbox" id="Modifier" name="Modifier"> Modifier</th>
+		<th><input type="checkbox" id="Modified Date" name="Modified Date"> Modified Date</th>
+	</tr>
+	<tr>
+		<td>3/1/2022</td>
+		<td>5QEU4369</td>
+		<td>SanDisk</td>
+		<td>01</td>
+		<td>SATA</td>
+		<td>M.2</td>
+		<td>200GB</td>
+		<td>Classified</td>
+		<td>********</td>
+		<td>********</td>
+		<td>********</td>
+		<td>********</td>
+		<td>********</td>
+		<td>********</td>
+		<td>********</td>
+		<td>********</td>
+		<td>********</td>
+		<td>********</td>
+		<td>********</td>
+		<td>********</td>
+		<td>********</td>
+	</tr>
+</table>
+</body>
+<input type="submit" value="Add" style="font-size: 15px;">
+<input type="submit" value="Delete" style="font-size: 15px;"><br>
+<br>
+<br>
+<input type="submit" value="Save" style="font-size: 30px;">
+<input type="submit" value="Cancel" style="font-size: 30px;">
 </section>
 
 {% endblock %}
