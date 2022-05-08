@@ -1,0 +1,84 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+{% block mainBody %}
+
+<section class="hero">
+    <div class="background-image" style="background-image: url({% static 'assets/img/island.jpg' %});"></div>
+    <h1>Profile Page</h1>
+	{% for message in messages %}
+    {{ message }}
+    {% endfor %}
+	<br>
+	<!--enctype="multipart/form-data" ensures file handling for profile picture-->
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{%for each_profile in profiles %}
+		{% if each_profile.user.username == request.user.username %}
+		<img class="profile-pictures" src="{{ each_profile.profile_picture.url }}">
+		<br>
+		{{update_profile_form.profile_picture}}
+		<br><br><br>
+		<table class="rwd-table">
+			<th>My Profile</th>
+			<th>Current</th>
+			<th>Change To</th>
+			<tr>
+				<td>Username</td>
+				<td>{{each_profile.user.username}}</td>
+				<td>X</td>
+			</tr>
+			<tr>
+				<td>Identification Number</td>
+				<td>{{each_profile.user.id}}</td>
+				<td>X</td>
+			</tr>
+			<tr>
+				<td>First Name</td>
+				<td>{{each_profile.first_name}}</td>
+				<td>{{update_profile_form.first_name}}</td>
+			</tr>
+			<tr>
+				<td>Last Name</td>
+				<td>{{each_profile.last_name}}</td>
+				<td>{{update_profile_form.last_name}}</td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td>{{each_profile.email}}</td>
+				<td>{{update_profile_form.email}}</td>
+			</tr>
+			<tr>
+				<td>Direct Supervisor Email</td>
+				<td>{{each_profile.direct_supervisor_email}}</td>
+				<td>{{update_profile_form.direct_supervisor_email}}</td>
+			</tr>
+			<tr>
+				<td>Branch Chief Email</td>
+				<td>{{each_profile.branch_chief_email}}</td>
+				<td>{{update_profile_form.branch_chief_email}}</td>
+			</tr>
+			<tr>
+				<td>Request Status</td>
+				<td>{{each_profile.requester_status}}</td>
+				<td>X</td>
+			</tr>
+			<tr>
+				<td>Maintainer Status</td>
+				<td>{{each_profile.maintainer_status}}</td>
+				<td>X</td>
+			</tr>
+			<tr>
+				<td>Auditor Status</td>
+				<td>{{each_profile.auditor_status}}</td>
+				<td>X</td>
+			</tr>
+		</table>
+		{% endif %}
+		{%endfor%}
+		<br>
+		<input class="submit-button" type="submit" value="Update Profile">
+	</form>
+</section>
+
+{% endblock %}

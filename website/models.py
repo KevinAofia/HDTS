@@ -1,149 +1,111 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 
 # Create your models here.
 
-
-# Denise
-class Requester(models.Model):
-    # at the moment we can delete the relationship with other models for testing purposes
-    # a user can be one requester, a requester can be one user
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    # Denise
-    requester_status_choices = (
-        ("Good Standing", "Good Standing"),
-        ("Delinquent", "Delinquent"),
-        ("Disabled", "Disabled"),
-        ("Archived", "Archived"),
-    )
-    first_name = models.CharField(max_length=100)  # required
-    last_name = models.CharField(max_length=100)  # required
-    email = models.EmailField(max_length=254, blank=True, null=True)  # required
-    direct_supervisor_email = models.EmailField(max_length=254, blank=True, null=True)  # required
-    branch_chief_email = models.EmailField(max_length=254, blank=True, null=True)  # required
-    requester_status = models.CharField(max_length=50, choices=requester_status_choices,
-                                        default=requester_status_choices[0][0])  # required
+# Kevin Configuration models
+################################################################
+class RequestStatusChoice(models.Model):
+    choice = models.CharField(max_length=300)
 
     def __str__(self):
-        full_name = (str(self.first_name), str(self.last_name))
-        return " ".join(full_name)
+        return self.choice
 
 
-# Denise
-class Maintainer(models.Model):
-    # at the moment we can delete the relationship with other models for testing purposes
-    # a user can be one maintainer, a maintainer can be one user
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    # Denise
-    maintainer_status_choices = (
-        ("Active", "Active"),
-        ("Disabled", "Disabled"),
-        ("Archived", "Archived"),
-    )
+class RequesterStatusChoice(models.Model):
+    choice = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.choice
+class MaintainerStatusChoice(models.Model):
+    choice = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.choice
+class AuditorStatusChoice(models.Model):
+    choice = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.choice
+class EventStatusChoice(models.Model):
+    choice = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.choice
+class EventDurationChoice(models.Model):
+    choice = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.choice
+class EventTypeChoice(models.Model):
+    choice = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.choice
+class HardDriveStatusChoice(models.Model):
+    choice = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.choice
+class HardDriveClassificationChoice(models.Model):
+    choice = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.choice
+class HardDriveBootTestStatusChoice(models.Model):
+    choice = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.choice
+class HardDriveSizeChoice(models.Model):
+    choice = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.choice
+################################################################
+
+# Kevin
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_picture = models.ImageField(default='default.jpg')
     first_name = models.CharField(max_length=100)  # required
     last_name = models.CharField(max_length=100)  # required
-    email = models.EmailField(max_length=254, blank=True, null=True)  # required
-    maintainer_status = models.CharField(max_length=50, choices=maintainer_status_choices,
-                                         default=maintainer_status_choices[0][0])  # required
+    email = models.EmailField(max_length=254)  # required
+    direct_supervisor_email = models.EmailField(max_length=254)  # required
+    branch_chief_email = models.EmailField(max_length=254)  # required
+    requester_status = models.ForeignKey(RequesterStatusChoice, blank=True, null=True, on_delete=models.SET_NULL)  # required
+    maintainer_status = models.ForeignKey(MaintainerStatusChoice, blank=True, null=True, on_delete=models.SET_NULL)  # required
+    auditor_status = models.ForeignKey(AuditorStatusChoice, blank=True, null=True, on_delete=models.SET_NULL)  # required
 
-    def __str__(self):  # uncomment to see default name in /admin
-        full_name = (str(self.first_name), str(self.last_name))
-        return " ".join(full_name)
-
-
-# Denise
-class Auditor(models.Model):
-    # at the moment we can delete the relationship with other models for testing purposes
-    # a user can be one auditor, a auditor can be one user
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    # Denise
-    auditor_status_choices = (
-        ("Authorized", "Authorized"),
-        ("Unauthorized", "Unauthorized"),
-        ("Archived", "Archived"),
-    )
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=254, blank=True, null=True)
-    auditor_status = models.CharField(max_length=50, choices=auditor_status_choices,
-                                      default=auditor_status_choices[0][0])  # required
-
-    def __str__(self):  # uncomment to see default name in /admin
-        full_name = (str(self.first_name), str(self.last_name))
+    def __str__(self):
+        full_name = (str(self.first_name), str(self.last_name),str(self.id))
         return " ".join(full_name)
 
 
 # Denise
 class HardDrive(models.Model):
     # Denise
-    hard_drive_status_choices = (
-        ("Assigned", "Assigned"),
-        ("Available", "Available"),
-        ("End of Life", "End of Life"),
-        ("Master Clone", "Master Clone"),
-        ("Pending Wipe", "Pending Wipe"),
-        ("Destroyed", "Destroyed"),
-        ("Lost", "Lost"),
-        ("Overdue", "Overdue"),
-        ("Picked Up", "Picked Up"),
-        ("Returned", "Returned"),
-        ("Pending Change", "Pending Change"),
-    )
-    # Denise
-    justifications_choices = [
-        ("Text", "Text"),
-        ("File Attachment", "File Attachment"),
-    ]
-    # Denise
-    classification_choices = (
-        ("Unclassified", "Unclassified"),
-        ("Classified", "Classified"),
-    )
-    # Denise
-    boot_test_status_choices = (
-        ("Pass", "Pass"),
-        ("Fail", "Fail"),
-    )
-    size_choices = (
-        ("16GB", "16GB"),
-        ("32GB", "32GB"),
-        ("64GB", "64GB"),
-        ("128GB", "128GB"),
-        ("256GB", "256GB"),
-        ("500GB", "500GB"),
-        ("1TB", "1TB"),
-        ("1.5TB", "1.5TB"),
-        ("2TB", "2TB"),
-        ("4TB", "4TB"),
-        ("6TB", "6TB"),
-        ("8TB", "8TB"),
-        ("12TB", "12TB"),
-        ("Other", "Other"),
-    )
-    creation_date = models.DateField(auto_now_add=False, blank=False, null=True)
-    serial_number = models.CharField(max_length=100, blank=False, null=False)
-    manufacturer = models.CharField(max_length=100, blank=False, null=True)
-    model_number = models.CharField(max_length=100, blank=False, null=True)
-    type = models.CharField(max_length=50, blank=False, null=True)
-    connection_port = models.CharField(max_length=50, blank=False, null=True)
-    size = models.CharField(max_length=50, choices=size_choices, blank=False, null=True)
-    classification = models.CharField(max_length=50, choices=classification_choices, blank=True, null=True)  # required
-    classification_change_justification = models.CharField(max_length=50, choices=justifications_choices,
-                                                           default='Text', blank=True, null=True)
-    image_version_ID = models.CharField(max_length=50, blank=True, null=True)
-    boot_test_status = models.CharField(max_length=50, choices=boot_test_status_choices, default='Pass', blank=True,
-                                        null=True)
-    boot_test_expiration_date = models.DateField(auto_now_add=False, blank=True, null=True)
-    status = models.CharField(max_length=50, choices=hard_drive_status_choices, default='Available')
-    hard_drive_status_change_justification = models.CharField(max_length=50, choices=justifications_choices,
-                                                              default='Text', blank=True, null=True)
-    date_issued = models.DateField(auto_now_add=False, blank=True, null=True)  # required
-    expected_return_date = models.DateField(auto_now_add=False, blank=True, null=True)  # required
-    hard_drive_return_date_justification = models.CharField(max_length=50, choices=justifications_choices,
-                                                            default='Text', blank=True, null=True)
-    actual_return_date = models.DateField(auto_now_add=False, blank=True, null=True)  # required
-    date_modified = models.DateField(auto_now=False, blank=True, null=True)  # required
+    creation_date = models.DateField(auto_now_add=True)  # required
+    serial_number = models.CharField(max_length=100, unique=True)  # required
+    manufacturer = models.CharField(max_length=100)  # required
+    model_number = models.CharField(max_length=100)  # required
+    type = models.CharField(max_length=50)  # required
+    connection_port = models.CharField(max_length=50)  # required
+    size = models.ForeignKey(HardDriveSizeChoice, blank=True, null=True, on_delete=models.SET_NULL)  # required
+    classification = models.ForeignKey(HardDriveClassificationChoice, blank=True, null=True, on_delete=models.SET_NULL)  # required
+    boot_test_status = models.ForeignKey(HardDriveBootTestStatusChoice, blank=True, null=True, on_delete=models.SET_NULL)  # required
+    status = models.ForeignKey(HardDriveStatusChoice, blank=True, null=True, on_delete=models.SET_NULL)  # required
+    classification_change_justification = models.TextField(blank=True, null=True)
+    image_version_ID = models.CharField(max_length=10, blank=True, null=True)
+    boot_test_expiration_date = models.DateField(blank=True, null=True)
+    hard_drive_status_change_justification = models.TextField(blank=True, null=True)
+    date_issued = models.DateField(blank=True, null=True)
+    expected_return_date = models.DateField(blank=True, null=True)
+    hard_drive_return_date_justification = models.TextField(blank=True, null=True)
+    actual_return_date = models.DateField(blank=True, null=True)
+    date_modified = models.DateField(auto_now=True)  # required
 
     def __str__(self):  # uncomment to see default name in /admin
         details = (str(self.serial_number), str(self.status))
@@ -153,73 +115,42 @@ class HardDrive(models.Model):
 # Miriam
 class Event(models.Model):
     # Denise
-    status_choices = (
-        ("Pending Request Approval", "Pending Request Approval"),
-        ("Upcoming", "Upcoming"),
-        ("Ongoing", "Ongoing"),
-        ("Past", "Past"),
-        ("Cancelled", "Cancelled"),
-    )
-    duration_choices = (
-        ("10 days", "10 days"),
-        ("20 days", "20 days"),
-        ("30 days", "30 days"),
-        ("40 days", "40 days"),
-        ("50 days", "50 days"),
-        ("60 days", "60 days"),
-    )
-    type_choices = (
-        ("CVPA", "CVPA"),
-        ("VoF", "VoF"),
-        ("CVI", "CVI"),
-        ("PMR", "PMR"),
-        ("Cyber Resilience", "Cyber Resilience"),
-        ("Individual Project", "Individual Project"),
-        ("Research Project", "Research Project"),
-        ("System Acceptance", "System Acceptance"),
-        ("Other", "Other"),
-    )
-    name = models.CharField(max_length=254)  # required
-    description = models.CharField(max_length=254)  # could be file attachment
+    name = models.CharField(max_length=100, unique=True)  # required
+    description = models.TextField()  #
     location = models.CharField(max_length=254)
     lead = models.CharField(max_length=254, blank=True, null=True)
-    participants = models.CharField(max_length=254)
-    type = models.CharField(max_length=254, choices=type_choices,
-                            default=type_choices[0][0])  # required IT IS STILL PENDING
-    duration = models.CharField(max_length=254, choices=duration_choices, default=duration_choices[0][0])  # required
-    status = models.CharField(max_length=254, choices=status_choices, default=status_choices[0][0])  # required
-    start_date = models.DateField(max_length=254)  # required
-    end_date = models.DateField(max_length=254)  # required
+    participants = models.TextField(max_length=500)
+    type = models.ForeignKey(EventTypeChoice, blank=True, null=True, on_delete=models.SET_NULL)  # required
+    duration = models.ForeignKey(EventDurationChoice, blank=True, null=True, on_delete=models.SET_NULL)  # required
+    status = models.ForeignKey(EventStatusChoice, blank=True, null=True, on_delete=models.SET_NULL)  # required
+    start_date = models.DateField(max_length=254, null=True)  # required
+    end_date = models.DateField(max_length=254, null=True)  # required
 
     def __str__(self):  # uncomment to see default name in /admin
-        details = (str(self.name), str(self.lead))
-        return " ".join(details)
+        # details = (str(self.lead), str(self.name), str(self.status))
+        # return " ".join(details)
+        return str(self.name)
 
 
 # Jacob and Bryant
+
+
 class Request(models.Model):
-    # request will stay in system if Requester is deleting for the moment
-    requester = models.ForeignKey(Requester, null=True, on_delete=models.CASCADE)
+    # user is tied to a one unique user account
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    # a user can submit a request for another requester that is not themselves
+    requester = models.ForeignKey(UserProfile, null=True, on_delete=models.CASCADE)
     event = models.OneToOneField(Event, null=True, on_delete=models.CASCADE)
     hard_drive = models.ManyToManyField(HardDrive)
-    # Denise
-    status_choices = (
-        ("Pending Approval", "Pending Approval"),
-        ("Under Review", "Under Review"),
-        ("Approved", "Approved"),
-        ("Denied", "Denied"),
-        ("Cancelled", "Cancelled"),
-        ("Completed", "Completed"),
-    )
-    receipt_number = models.CharField(max_length=50, blank=False, null=False)  # required
-    status = models.CharField(max_length=50, choices=status_choices, blank=False, null=False)  # required
-    creation_date = models.DateField(max_length=254)  # required
-    data_of_last_modification = models.DateField(max_length=254)  # required
-    need_hard_drives_by_date = models.DateField(max_length=254)  # required
+    status = models.ForeignKey(RequestStatusChoice, blank=True, null=True, on_delete=models.SET_NULL)  # required
+    request_number = models.CharField(max_length=22)  # MMDDYYYY/requesterfirstinitial_requesterlastinitial/devcomHHMMSS
+    creation_date = models.DateField(auto_now_add=True)  # required
+    date_of_last_modification = models.DateField(auto_now=True)  # required
+    pickup_date = models.DateField(max_length=254, blank=False, null=True)  # required
     number_of_classified_hard_drives_needed = models.PositiveIntegerField(default=0)  # required
-    number_of_unclassified_hardDrives_needed = models.PositiveIntegerField(default=0)  # required
-    comment = models.CharField(max_length=1000, blank=True, null=True)
+    number_of_unclassified_hard_drives_needed = models.PositiveIntegerField(default=0)  # required
+    comment = models.TextField(blank=True, null=True)
 
     def __str__(self):  # uncomment to see default name in /admin
-        details = (str(self.receipt_number), str(self.status))
+        details = (str(self.requester), str(self.request_number), str(self.status))
         return " ".join(details)

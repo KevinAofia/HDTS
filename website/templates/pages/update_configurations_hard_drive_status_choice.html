@@ -1,0 +1,26 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+{% block mainBody %}
+<section class="hero">
+    <div class="background-image" style="background-image: url({% static 'assets/img/island.jpg' %});"></div>
+    <h1>Updating Configurations</h1>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    <form method="POST">
+        {% csrf_token %}
+        <table class="rwd-table">
+            <th>Current</th>
+            <th>Change To</th>
+            <tr>
+                <td>{{this_configuration.choice}}</td>
+                <td>{{update_configuration_form.choice}}</td>
+            </tr>
+        </table>
+        <br>
+        <a class="submit-button" href="{% url 'm_configurations' %}">Cancel</a>
+        <input type="submit" class="submit-button" value="Update Configuration">
+    </form>
+</section>
+{% endblock %}

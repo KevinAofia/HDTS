@@ -1,0 +1,20 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+{% block mainBody %}
+<section class="hero">
+    <div class="background-image" style="background-image: url({% static 'assets/img/island.jpg' %});"></div>
+    <h1>Warning: Configurations should not be deleted </h1>
+    <h6>Deletions should be carefully considered</h6>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+	<br>
+    <p>Are you sure you want to delete configuration: "{{this_configuration.choice}}"</p>
+    <form method="POST">
+        {% csrf_token %}
+        <a class="submit-button" href="{% url 'm_configurations' %}">Cancel</a>
+        <input class="submit-button-red" type="submit" value="Delete Configuration">
+    </form>
+</section>
+{% endblock %}

@@ -1,23 +1,193 @@
 {% extends 'pages/base.html' %}
 {% load static %}
 
-{% block navbar %}
-{% include 'pages/navbar_maintainer.html' %}
-{% endblock %}
 
 {% block mainBody %}
 <section class="hero">
-    <p style="text-align:center;">Maintainer: {{request.user}} <a href="{% url 'logoutUser' %}"><span
-            style="color:rgba(201, 219, 10, 0.9);">[Logout]</span></a></p>
     <div class="background-image" style="background-image: url({% static 'assets/img/island.jpg' %});"></div>
-    <h1>Maintainer-Hard Drives Detailed View</h1>
-    <h3>Hard Drive Tracking System</h3>
-    Hard Drives<br>
-
-    {% for hard_drive in hard_drives %}
-    {{hard_drive}}<br>
+    <h1>Hard Drives</h1>
+    {% for message in messages %}
+    {{ message }}
     {% endfor %}
+    <br>
 
+    <table class="rwd-table">
+        <tr>
+            <th colspan=3><h4>Legend</h4></th>
+        </tr>
+        <tr>
+            <th>ARD = Actual Return Date</th>
+            <th>BTEXP = Boot Test Expiration Date</th>
+            <th>BTS = Boot Test Status</th>
+        </tr>
+        <tr>
+            <th>C = Classification</th>
+            <th>CCJ = Classification Change Justification</th>
+            <th>CD = Creation Date</th>
+        </tr>
+        <tr>
+            <th>CP = Connection Port</th>
+            <th>DI = Date Issued</th>
+            <th>DM = Date Modified</th>
+        </tr>
+        <tr>
+            <th>ERD = Expected Return Date</th>
+            <th>HDRDJ = Hard Drive Return Date Justification</th>
+            <th>HDSCJ = Hard Drive Status Change Justification</th>
+        </tr>
+        <tr>
+            <th>IMG = Image Version ID</th>
+            <th>M = Manufacturer</th>
+            <th>MN = Model Number</th>
+        </tr>
+        <tr>
+            <th>S = Status</th>
+            <th>SN = Serial Number</th>
+            <th>SZ = Size</th>
+        </tr>
+        <tr>
+            <th>T = Type</th>
+            <th>U = Update</th>
+            <th>D = Delete</th>
+        </tr>
+    </table>
+    <br>
+
+    <table id="example" class="table table-success table-striped" style="width:100%">
+        <thead>
+        <tr>
+            <th>CD</th>
+            <th>SN</th>
+            <th>M</th>
+            <th>MN</th>
+            <th>T</th>
+            <th>CP</th>
+            <th>SZ</th>
+            <th>C</th>
+            <th>BTS</th>
+            <th>S</th>
+            <th>CCJ</th>
+            <th>IMG</th>
+            <th>BTEXP</th>
+            <th>HDSCJ</th>
+            <th>DI</th>
+            <th>ERD</th>
+            <th>HDRDJ</th>
+            <th>ARD</th>
+            <th>DM</th>
+            <th>U</th>
+            <th>D</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for each_hd in hard_drives %}
+        <tr>
+            <td>
+                {{each_hd.creation_date}}
+            </td>
+            <td>
+                {{each_hd.serial_number}}
+            </td>
+            <td>
+                {{each_hd.manufacturer}}
+            </td>
+            <td>
+                {{each_hd.model_number}}
+            </td>
+            <td>
+                {{each_hd.type}}
+            </td>
+            <td>
+                {{each_hd.connection_port}}
+            </td>
+            <td>
+                {{each_hd.size}}
+            </td>
+            <td>
+                {{each_hd.classification}}
+            </td>
+            <td>
+                {{each_hd.boot_test_status}}
+            </td>
+            <td>
+                {{each_hd.status}}
+            </td>
+            <td>
+                {{each_hd.classification_change_justification}}
+            </td>
+            <td>
+                {{each_hd.image_version_ID}}
+            </td>
+            <td>
+                {{each_hd.boot_test_expiration_date}}
+            </td>
+            <td>
+                {{each_hd.hard_drive_status_change_justification}}
+            </td>
+            <td>
+                {{each_hd.date_issued}}
+            </td>
+            <td>
+                {{each_hd.expected_return_date}}
+            </td>
+            <td>
+                {{each_hd.hard_drive_return_date_justification}}
+            </td>
+            <td>
+                {{each_hd.actual_return_date}}
+            </td>
+            <td>
+                {{each_hd.date_modified}}
+            </td>
+            <td>
+                <a class="submit-button" href="{% url 'u_hard_drive' each_hd.id %}">Update</a>
+            </td>
+            <td>
+                <a class="submit-button" href="{% url 'd_hard_drive' each_hd.id %}">Delete</a>
+            </td>
+
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>CD</th>
+            <th>SN</th>
+            <th>M</th>
+            <th>MN</th>
+            <th>T</th>
+            <th>CP</th>
+            <th>SZ</th>
+            <th>C</th>
+            <th>BTS</th>
+            <th>S</th>
+            <th>CCJ</th>
+            <th>IMG</th>
+            <th>BTEXP</th>
+            <th>HDSCJ</th>
+            <th>DI</th>
+            <th>ERD</th>
+            <th>HDRDJ</th>
+            <th>ARD</th>
+            <th>DM</th>
+            <th>U</th>
+            <th>D</th>
+        </tr>
+        </tfoot>
+    </table>
+
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+        <table class="rwd-table">
+            <tr>
+                <th colspan="2"><h4>Add Hard Drive</h4>Hard Drive Details</th>
+            </tr>
+            {{hard_drive_form}}
+            <tr>
+                <td colspan="2"><input type="submit" class="submit-button" value="ADD"></td>
+            </tr>
+        </table>
+    </form>
 </section>
 
 {% endblock %}

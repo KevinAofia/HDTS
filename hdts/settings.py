@@ -120,6 +120,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')  # Directory where uploaded media is saved.
+MEDIA_URL = '/media/'  # Public URL at the browser
+
+
 # define the directory that holds all our static files
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),

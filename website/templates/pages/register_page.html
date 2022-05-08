@@ -1,0 +1,31 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block mainBody %}
+
+<section class="hero">
+    <div class="background-image" style="background-image: url({% static 'assets/img/dark.jpg' %});"></div>
+    <h2>REGISTER</h2><br>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in register_form %}
+        {% if field.label == "Password" %}
+        {% for field in register_form_add_ons %}
+        {{field.label}}<br>
+        {{field}}<br><br>
+        {% endfor %}
+        {% endif %}
+        {{field.label}}<br>
+        {{field}}<br><br>
+        {% endfor %}
+        <input class="submit-button" type="submit" value="Create Account">
+    </form>
+</section>
+{% endblock%}

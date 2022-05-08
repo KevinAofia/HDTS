@@ -1,0 +1,123 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+{% block mainBody %}
+<section class="hero">
+    <div class="background-image" style="background-image: url({% static 'assets/img/island.jpg' %});"></div>
+    <h1>Updating Hard Drive</h1>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    <form method="POST">
+        {% csrf_token %}
+        <table class="rwd-table">
+            <th>Hard Drive Details</th>
+            <th>Current</th>
+            <th>Change To</th>
+            <tr>
+                <td>Creation Date</td>
+                <td>{{this_hard_drive.creation_date}}</td>
+                <td>X</td>
+            </tr>
+            <tr>
+                <td>Serial Number</td>
+                <td>{{this_hard_drive.serial_number}}</td>
+                <td>{{update_hard_drive_form.serial_number}}</td>
+            </tr>
+            <tr>
+                <td>Manufacturer</td>
+                <td>{{this_hard_drive.manufacturer}}</td>
+                <td>{{update_hard_drive_form.manufacturer}}</td>
+            </tr>
+            <tr>
+                <td>Model Number</td>
+                <td>{{this_hard_drive.manufacturer}}</td>
+                <td>{{update_hard_drive_form.manufacturer}}</td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td>{{this_hard_drive.type}}</td>
+                <td>{{update_hard_drive_form.type}}</td>
+            </tr>
+            <tr>
+                <td>Connection Port</td>
+                <td>{{this_hard_drive.connection_port}}</td>
+                <td>{{update_hard_drive_form.connection_port}}</td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td>{{this_hard_drive.type}}</td>
+                <td>{{update_hard_drive_form.type}}</td>
+            </tr>
+            <tr>
+                <td>Size</td>
+                <td>{{this_hard_drive.size}}</td>
+                <td>{{update_hard_drive_form.size}}</td>
+            </tr>
+            <tr>
+                <td>Classification</td>
+                <td>{{this_hard_drive.classification}}</td>
+                <td>{{update_hard_drive_form.classification}}</td>
+            </tr>
+            <tr>
+                <td>Boot Test Status</td>
+                <td>{{this_hard_drive.boot_test_status}}</td>
+                <td>{{update_hard_drive_form.boot_test_status}}</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>{{this_hard_drive.status}}</td>
+                <td>{{update_hard_drive_form.status}}</td>
+            </tr>
+            <tr>
+                <td>Classification Change Justification</td>
+                <td>{{this_hard_drive.classification_change_justification}}</td>
+                <td>{{update_hard_drive_form.classification_change_justification}}</td>
+            </tr>
+            <tr>
+                <td>Image Version ID</td>
+                <td>{{this_hard_drive.image_version_ID}}</td>
+                <td>{{update_hard_drive_form.image_version_ID}}</td>
+            </tr>
+            <tr>
+                <td>Boot Test Expiration Date</td>
+                <td>{{this_hard_drive.boot_test_expiration_date}}</td>
+                <td>{{update_hard_drive_form.boot_test_expiration_date}}</td>
+            </tr>
+            <tr>
+                <td>Hard Drive Status Change Justification</td>
+                <td>{{this_hard_drive.hard_drive_status_change_justification}}</td>
+                <td>{{update_hard_drive_form.hard_drive_status_change_justification}}</td>
+            </tr>
+            <tr>
+                <td>Date Issued</td>
+                <td>{{this_hard_drive.date_issued}}</td>
+                <td>{{update_hard_drive_form.date_issued}}</td>
+            </tr>
+            <tr>
+                <td>Expected Return Date</td>
+                <td>{{this_hard_drive.expected_return_date}}</td>
+                <td>{{update_hard_drive_form.expected_return_date}}</td>
+            </tr>
+            <tr>
+                <td>Hard Drive Return Date Justification</td>
+                <td>{{this_hard_drive.hard_drive_return_date_justification}}</td>
+                <td>{{update_hard_drive_form.hard_drive_return_date_justification}}</td>
+            </tr>
+            <tr>
+                <td>Actual Return Date</td>
+                <td>{{this_hard_drive.actual_return_date}}</td>
+                <td>{{update_hard_drive_form.actual_return_date}}</td>
+            </tr>
+            <tr>
+                <td>Date Modified</td>
+                <td>{{this_hard_drive.date_modified}}</td>
+                <td>X</td>
+            </tr>
+        </table>
+        <br>
+        <a class="submit-button" href="{% url 'm_hard_drives' %}">Cancel</a>
+        <input type="submit" class="submit-button" value="Update Hard Drive">
+    </form>
+</section>
+{% endblock %}
