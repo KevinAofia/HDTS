@@ -49,7 +49,7 @@ Platform/Installation Instructions for Windows Machine
 Platform/Installation Instructions for Mac Machine
     Github Repository: https://github.com/KevinAofia/HDTS.git
 
-    1. Downloading and setting up python 
+    2. Downloading and setting up python 
         - Go to brew.sh and download it
         - Open up a terminal and type the following:
             brew install python3
@@ -60,19 +60,19 @@ Platform/Installation Instructions for Mac Machine
             pip
             If no errors were displayed, you are good to go. If you see any errors, you probably didn't install python right
 
-    2. Setting up Django
+    1. Setting up Django
         - After setting up python open up a terminal and type:
             pip install django
         - If after installing it, it says that pip might need an upgrade, type the following:
             pip install --upgrade pip
     
-    3. Download VisualStudio Code or any Software that allows you to use Django and mysqli
+    4. Download VisualStudio Code or any Software that allows you to use Django and mysqli
         - If you want to use Visual Studio Code, you can use this link https://code.visualstudio.com/download
         - Add python as an extension
         - Add django as an extension
         - You might need to restart your pc for this to make changes in the system
 
-    4. Code:
+    5. Code:
         - Create a folder in your PC/laptop, this folder will contain all the contents downloaded from the github repository
         - Open up Visual Studio Code and open the folder you want the project to be in
         - Open up a terminal and type the following:
@@ -82,7 +82,7 @@ Platform/Installation Instructions for Mac Machine
             
         - The previous step will allow you to clone the project and allow you to make any changes to it
 
-    5. How to run the code:
+    6. How to run the code:
         - Open up a terminal and cd into wherever you find the manage.py file
         - If you type "dir" and you see manage.py as one of the files within the directory you're in, you are in the right place!
         - Type the following in the same terminal:
@@ -100,5 +100,22 @@ Resources:
     
     - https://www.youtube.com/watch?v=e_o1nacGQiw&ab_channel=MLittleProgramming
     - https://code.visualstudio.com/docs/python/tutorial-django
-Our project will be in the website folder.
-Templates/Pages will contain the layouts for the UI for the app
+Code Structure:
+    Code is structured according to the default Django setup. Below are definitions for the most important files and folders in the program.
+
+    admin.py: 
+        - File where all models (objects) are registered to be used by the site
+        - Each model is registered using a function in rapid succession
+
+    urls.py:
+        - File where all front end sites are given WWW urls, a view, and a name for the rest of the program to work with
+        - Each url is defined by a function and entered as an element of an array called urlpatterns
+
+    views.py:
+        - File where all front end sites can give and take (POST and GET) information to and from the program
+        - Each view is represented as a function to be run any time the front end site needs to be presented
+     
+    models.py:
+        - File where the configuration models are initialized
+    
+    Some files are crated automatically and are empty due to this.
