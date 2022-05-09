@@ -27,8 +27,8 @@
 
 		<tr>
             <td>{{each_request.user}}</td>
-            <td>{{each_request.requester}}</td>
-            <td>{{each_request.event}}</td>
+            <td>{{each_request.requester.first_name}} {{each_request.requester.last_name}}</td>
+            <td>{{each_request.event.name}}</td>
             <td>{{each_request.event.lead}}</td>
             <td>{{each_request.number_of_classified_hard_drives_needed}}</td>
             <td>{{each_request.number_of_unclassified_hard_drives_needed}}</td>
@@ -57,9 +57,9 @@
         {% for each_request in requests %}
         <tr>
             <td>{{each_request.user}}</td>
-            <td>{{each_request.requester}}</td>
+            <td>{{each_request.requester.first_name}} {{each_request.requester.last_name}}</td>
             <td>{{each_request.request_number}}</td>
-            <td>{{each_request.event}}</td>
+            <td>{{each_request.event.name}}</td>
             <td>{{each_request.event.lead}}</td>
             <td>
                 {% for each_hd in each_request.hard_drive.all %}
