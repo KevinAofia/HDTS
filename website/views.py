@@ -5,7 +5,7 @@ from django.contrib import messages
 
 # Create your views here.
 from .models import *
-from .forms import RegisterForm, RegisterFormAddOns, LoginForm, CreateRequestForm, CreateEventForm, UpdateProfileForm, \
+from .forms import AmendmentForm, RegisterForm, RegisterFormAddOns, LoginForm, CreateRequestForm, CreateEventForm, ReturnHardDriveForm, UpdateProfileForm, \
     UpdateRequestForm, UpdateEventForm, CreateOrUpdateRequestStatusChoiceForm, CreateOrUpdateRequesterStatusChoiceForm, \
     CreateOrUpdateMaintainerStatusChoiceForm, CreateOrUpdateAuditorStatusChoiceForm, \
     CreateOrUpdateEventStatusChoiceForm, CreateOrUpdateEventDurationChoiceForm, CreateOrUpdateEventTypeChoiceForm, \
@@ -14,7 +14,7 @@ from .forms import RegisterForm, RegisterFormAddOns, LoginForm, CreateRequestFor
     UpdateEventFormAll, CreateOrUpdateHardDriveForm
 from .decorators import unauthenticated_user, allowed_users
 from django.contrib.auth.decorators import login_required
-from datetime import datetime
+from datetime import date, datetime
 
 
 def base(request):
@@ -138,6 +138,11 @@ def requester_requests(request):
                 status=RequestStatusChoice.objects.first(),
                 comment=request_info.comment,
             )
+            Log.objects.create(
+                user=request.user,
+                timestamp = date_time_object.today(),
+                action_performed = 'Create a Request'
+            )
             messages.success(request, 'Request was successfully created.')
         return redirect('r_requests')
     requests = Request.objects.all()  # passing all requests
@@ -166,16 +171,27 @@ def update_request(request, id):
 
         update_request_form_all = UpdateRequestFormAll(request.POST, instance=this_request)
         update_event_form_all = UpdateEventFormAll(request.POST, instance=this_request.event)
+        date_time_object = datetime.now()
 
         if update_request_form.is_valid() and update_event_form.is_valid() and "ALL" not in request.POST:
             update_request_form.save()
             update_event_form.save()
+            Log.objects.create(
+                user=request.user,
+                timestamp = date_time_object.today(),
+                action_performed = 'Update a Request'
+            )
             messages.success(request, 'Request was successfully updated.')
             return redirect('r_requests')
 
         elif update_request_form_all.is_valid() and update_event_form_all.is_valid() and "ALL" in request.POST:
             update_request_form_all.save()
             update_event_form_all.save()
+            Log.objects.create(
+                user=request.user,
+                timestamp = date_time_object.today(),
+                action_performed = 'Update a Request'
+            )
             messages.success(request, 'Request was successfully updated.')
             return redirect('m_requests')
         else:
@@ -219,8 +235,55 @@ def delete_request(request, id):
 
 @login_required(login_url='loginPage')
 @allowed_users(allowed_roles=['admin', 'requester'])
+def requester_my_requests(request):
+    this_user = UserProfile.objects.get(user=request.user)
+    # print(this_user)
+    my_requests = Request.objects.all()  # passing all requests
+    # print(my_requests.status)
+    context = {
+        'requests': my_requests,
+        'user':this_user
+    }
+    return render(request, 'pages/requester_my_requests.html', context)
+
+
+@login_required(login_url='loginPage')
+@allowed_users(allowed_roles=['admin', 'requester'])
 def requester_messages(request):
     return render(request, 'pages/requester_messages.html')
+
+
+@login_required(login_url='loginPage')
+@allowed_users(allowed_roles=['admin', 'requester'])
+def requester_amendment(request,id):
+    submitted = False
+
+    # this_user = UserProfile.objects.get(user=request.user)
+    my_request = Request.objects.get(id=id)
+    # date_time_object = datetime.now().today
+    today = str(datetime.today().date())
+    form = AmendmentForm()
+
+    if request.method == "POST":
+        form = AmendmentForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)  # wait to save request until all fields are specified
+            date_time_object = datetime.now()
+            Amendment.objects.create(
+                user=request.user,
+                amendment_decison_date = form.amendment_decison_date,
+                amendment_submission_date = today,
+                amendment_description = form.amendment_description,
+                comment = form.comment
+            )
+
+
+    context = {
+        'amendment_form': form,
+        'requests':my_request
+    }
+    return render(request, 'pages/requester_amendment.html', context)
+
 
 
 # maintainer views
@@ -239,6 +302,32 @@ def maintainer_requests(request):
         'request_status_choice':request_status_choice,
     }
     return render(request, 'pages/maintainer_requests.html', context)
+
+
+
+@login_required(login_url='loginPage')
+@allowed_users(allowed_roles=['admin', 'maintainer'])
+def maintainer_return_hard_drives(request):
+    choice = HardDriveStatusChoice.objects.all
+    return_drive_form = ReturnHardDriveForm()
+
+    if request.method == 'POST':
+        return_drive_form = ReturnHardDriveForm(request.POST)
+        if return_drive_form.is_valid():
+            return_drive_form = return_drive_form.save(commit=False)  
+            this_drive = HardDrive.objects.get(serial_number=return_drive_form.serial_number)
+            this_drive.status = choice.available
+            return_drive_form.save()
+            messages.success(request, 'Hard drive was successfully returned.')
+            return redirect('m_hard_drives')
+        else:
+            messages.error(request, 'Hard drive could not be returned..')
+            return redirect('m_hard_drives')
+
+    context = {
+        'return_drive_form': return_drive_form
+    }
+    return render(request, 'pages/maintainer_return_hard_drives.html', context)
 
 
 @login_required(login_url='loginPage')
@@ -810,3 +899,17 @@ def auditor_messages(request):
 @allowed_users(allowed_roles=['admin', 'auditor'])
 def auditor_reports(request):
     return render(request, 'pages/auditor_reports.html')
+
+
+@login_required(login_url='loginPage')
+@allowed_users(allowed_roles=['admin', 'auditor'])
+def auditor_log(request):
+
+    logs = Log.objects.all()  # passing all logs
+    context = {
+        'log': logs,
+    }
+
+    return render(request, 'pages/auditor_log.html', context)
+
+    

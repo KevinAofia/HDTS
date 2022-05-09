@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 
-from .models import Request, Event, UserProfile, RequestStatusChoice, RequesterStatusChoice, MaintainerStatusChoice, \
+from .models import Amendment, Request, Event, UserProfile, RequestStatusChoice, RequesterStatusChoice, MaintainerStatusChoice, \
     AuditorStatusChoice, EventStatusChoice, EventDurationChoice, EventTypeChoice, HardDriveStatusChoice, \
     HardDriveClassificationChoice, HardDriveBootTestStatusChoice, HardDriveSizeChoice, HardDrive
 
@@ -144,6 +144,30 @@ class CreateOrUpdateHardDriveForm(ModelForm):
             'expected_return_date': DateInput(),
             'actual_return_date': DateInput(),
         }
+
+class ReturnHardDriveForm(ModelForm):
+    class Meta:
+        model = HardDrive
+        fields = [
+            'serial_number',
+            
+        ]
+
+
+#Denise
+class AmendmentForm(ModelForm):
+    class Meta:
+        model = Amendment
+        fields = [
+            'amendment_decison_date',
+            'amendment_description',
+            'comment',
+        ]
+
+        widgets = {
+            'amendment_decison_date': DateInput(),
+        }
+
 
 
 # update forms

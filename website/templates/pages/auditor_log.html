@@ -1,0 +1,35 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+{% comment %} {% include "bootstrap_form_horizontal.html" with form=myform %} {% endcomment %}
+
+{% block mainBody %}
+<section class="hero">
+    <div class="background-image" style="background-image: url({% static 'assets/img/island.jpg' %});"></div>
+    {% comment %} <h3>My Requests</h3> {% endcomment %}
+
+    <h2 class="title">LOG DETAILS</h2><br>
+    <table class="request-table">
+        <thead>
+            <tr>
+                {% comment %} <th scope="col"> Select/ Unselect All</th> {% endcomment %}
+                <th scope="col">Timestamp</th>
+                <th scope="col">User</th>
+                <th scope="col">Action Performed</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for each_log in log %}
+            <tr>
+                {% comment %} <td scope ='col' data-label='Select/ Unselect All'><input type="checkbox" name="selectedReq"></td> {% endcomment %}
+                <td scope ='row' data-label='Timestamp'>  {{each_log.timestamp}}</td>
+                <td scope ='row' data-label='User'>{{each_log.user}}</td>
+                <td scope ='row' data-label='Action Performed'>{{each_log.action_performed}}</td>
+
+            </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+
+</section>
+
+{% endblock %}

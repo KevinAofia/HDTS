@@ -1,0 +1,24 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+
+{% block mainBody %}
+<section class="hero">
+    <div class="background-image" style="background-image: url({% static 'assets/img/island.jpg' %});"></div>
+    <h1>Hard Drives</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <table class="rwd-table">
+            <tr>
+                <th colspan="2"><h4>Return Hard Drive</h4></th>
+            </tr>
+            {{return_drive_form}}
+            <tr>
+                <td colspan="2"><input type="submit" class="submit-button" value="RETURN"></td>
+            </tr>
+        </table>
+    </form>
+</section>
+
+{% endblock %}

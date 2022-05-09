@@ -1,0 +1,120 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+
+{% block mainBody %}
+<section class="hero">
+    <div class="background-image" style="background-image: url({% static 'assets/img/island.jpg' %});"></div>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+	<br>
+
+    <h2 class="title">REQUEST SUMMARY</h2><br>
+    <table class="rwd-table">
+        <tbody>
+        <tr>
+            <th colspan=3>Request Details</th>
+        </tr>
+        <tr>
+            <td>Request Number</td>
+            <td>{{requests.request_number}}</td>
+        </tr>
+        <tr>
+            <td>Requester</td>
+            <td>{{requests.requester}}</td>
+        </tr>
+        <tr>
+            <td>Pickup Date</td>
+            <td>{{requests.pickup_date}}</td>
+        </tr>
+        <tr>
+            <td>QUANTITY(C.H.D) Requested</td>
+            <td>{{requests.number_of_classified_hard_drives_needed}}</td>
+        </tr>
+        <tr>
+            <td>Quantity(U.H.D) Requested</td>
+            <td>{{requests.number_of_unclassified_hard_drives_needed}}</td>
+        </tr>
+        <tr>
+            <td>Event Name</td>
+            <td>{{requests.event.name}}</td>
+        </tr>
+        <tr>
+            <td>Event Description</td>
+            <td>{{requests.event.description}}</td>
+        </tr>
+        <tr>
+            <td>Event Location</td>
+            <td>{{requests.event.location}}</td>
+        </tr>
+        <tr>
+            <td>Event Lead</td>
+            <td>{{requests.event.lead}}</td>
+        </tr>
+        <tr>
+            <td>Event Participants</td>
+            <td>{{requests.event.participants}}</td>
+        </tr>
+        <tr>
+            <td>Event Status</td>
+            <td>{{requests.event.status}}</td>
+        </tr>
+        <tr>
+            <td>Event Type</td>
+            <td>{{requests.event.type}}</td>
+        </tr>
+        <tr>
+            <td>Event Start Date</td>
+            <td>{{requests.event.start_date}}</td>
+        </tr>
+        <tr>
+            <td>Event End Date</td>
+            <td>{{requests.event.end_date}}</td>
+        </tr>
+        <tr>
+            <td>Length of Reporting Cycle</td>
+            <td>{{requests.event.length_of_report_cycle}}</td>
+        </tr>
+        <tr>
+            <td>Comments</td>
+            <td>{{requests.comment}}</td>
+        </tr>
+        <tr>
+            <td>Request Status</td>
+            <td>{{requests.status}}</td>
+        </tr>
+    </tbody>
+        <!--if request is not under review yet, it can be updated/deleted-->
+        {% comment %} {% if my_request.status == request_status_choice.first %}
+        <tr>
+            <td colspan=2>
+                <a class="submit-button" href="{% url 'update_request' my_request.id %}">Update Request</a>
+                <a class="submit-button" href="{% url 'delete_request' my_request.id %}">Delete Request</a>
+            </td>
+        </tr>
+        {% endif %} {% endcomment %}
+    </table>
+    <br>
+    
+    <br><br>
+
+
+    <h2>Create Amendment</h2>
+    <form method='POST'>
+        {% csrf_token %}
+        <table class='rwd-table'> 
+            <tr>
+                <th colspan=3>Amendment</th>
+            </tr>
+            {{amendment_form}}
+            
+        </table>
+        <input class="submit-button" type="submit" value="Add Amendment">
+    </form>
+    <br><br>
+
+</section>
+
+
+{% endblock %}

@@ -154,3 +154,41 @@ class Request(models.Model):
     def __str__(self):  # uncomment to see default name in /admin
         details = (str(self.requester), str(self.request_number), str(self.status))
         return " ".join(details)
+
+
+#Laura
+class Log(models.Model):
+    # (blank=False, null=False) means that it is required
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    timestamp = models.DateField()
+    action_performed = models.CharField(max_length=254)
+
+    def __str__(self):  # uncomment to see default name in /admin
+        details = (str(self.user), str(self.timestamp), str(self.action_performed))
+        return " ".join(details)
+
+
+#Denise
+class Amendment(models.Model):
+    #Denise
+    amendment_Status = (
+        #(Actual Value, human-readable name)
+        ("Created","Created"),
+        ("Approved","Approved"),
+        ("Denied","Denied"),
+    )
+
+    # (blank=False, null=False) means that it is required
+    user = models.CharField(max_length=100, blank=False, null=False)
+    amendment_submission_date = models.DateField()
+    amendment_decison_date = models.DateField(max_length=254, null=True)
+    # amendment_description = models.FileField(upload_to=None, max_length=100)# double check & required
+    # amendment_description1 = models.CharField(max_length=100, blank=True, null=True)
+    amendment_description = models.TextField() # double check
+    # decision_date = models.DateField(max_length=254, blank=False, null=True) 
+    status = amendment_Status 
+    comment = models.TextField() # double check
+
+    def __str__(self):  # uncomment to see default name in /admin
+        details = (str(self.amendment_submission_date), str(self.status))
+        return " ".join(details)

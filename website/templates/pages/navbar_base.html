@@ -6,6 +6,8 @@
         <div id="dropdown-content">
             <a href="{% url 'r_requests' %}">Requests</a>
             <a href="{% url 'r_messages' %}">Messages</a>
+            <a href="{% url 'r_my_requests' %}">My Requests</a>
+            
         </div>
     </div>
     <div id="dropdown">
@@ -28,6 +30,7 @@
             <a href="{% url 'a_hard_drives' %}">Hard Drives</a>
             <a href="{% url 'a_reports' %}">Reports</a>
             <a href="{% url 'a_messages' %}">Messages</a>
+            <a href="{% url 'a_log' %}">Log</a>
         </div>
     </div>
     <a href="{% url 'logoutUser' %}">[Logout]</a>

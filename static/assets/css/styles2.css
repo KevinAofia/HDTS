@@ -690,3 +690,101 @@ h4 {
 /*---------------------
  	Table maintainer requests styling
 ---------------------*/
+
+
+
+
+/*--------------------------------------------------------------------------------*/
+/*---------------------
+    REQUESTS TABLE
+---------------------*/
+
+.request-table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+    color: black;
+
+  }
+
+
+  .request-table thead th{
+    background: rgba(255, 222, 0, 0.85);
+}
+
+.request-table tr {
+	background-color: rgba(152, 152, 152, 0.4);
+    border: 1px solid black;
+    /* padding: .35em; */
+    padding: 5px;
+  }
+
+
+  .request-table tbody tr:hover {
+    background-color: #d8e7f3;
+  }
+
+.request-table th,
+.request-table td {
+  /* padding: .625em; */
+  padding: 10px;
+  text-align: center;
+}
+
+
+.request-table th {
+    font-size: .85em;
+    /* letter-spacing: .1em; */
+
+  }
+
+@media screen and (max-width: 800px) {
+.request-table {
+    border: 0;
+}
+
+.request-table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap:break-word
+}
+
+.request-table tr {
+    border-bottom: 3px solid black;
+    display: block;
+    margin-bottom: .625em;
+}
+
+.request-table td {
+    border-bottom: 1px solid black;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+    color: #000;
+    word-wrap:break-word
+}
+
+.request-table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.request-table td:last-child {
+    border-bottom: 0;
+}
+}

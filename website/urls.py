@@ -18,11 +18,14 @@ urlpatterns = [
     path('requester_messages/', views.requester_messages, name='r_messages'),
     path('update_request/<str:id>/', views.update_request, name='update_request'),
     path('delete_request/<str:id>/', views.delete_request, name='delete_request'),
+    path('requester_my_requests/',views.requester_my_requests,name='r_my_requests'),
+    path('requester_amendment/<str:id>/', views.requester_amendment, name='requester_amendment'),
 
     # maintainer urls
     ################################################################
     path('maintainer_requests/', views.maintainer_requests, name='m_requests'),
     path('maintainer_hard_drives/', views.maintainer_hard_drives, name='m_hard_drives'),
+    path('maintainer_return_hard_drives/', views.maintainer_return_hard_drives, name='m_return_hard_drives'),
     path('maintainer_messages/', views.maintainer_messages, name='m_messages'),
     path('maintainer_reports/', views.maintainer_reports, name='m_reports'),
     path('maintainer_configurations/', views.maintainer_configurations, name='m_configurations'),
@@ -34,6 +37,7 @@ urlpatterns = [
     path('auditor_hard_drives/', views.auditor_hard_drives, name='a_hard_drives'),
     path('auditor_messages/', views.auditor_messages, name='a_messages'),
     path('auditor_reports/', views.auditor_reports, name='a_reports'),
+    path('auditor_log/', views.auditor_log, name='a_log'),
 
     # maintainer-configurations urls
     ################################################################

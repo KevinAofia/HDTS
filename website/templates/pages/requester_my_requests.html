@@ -1,0 +1,66 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+{% block mainBody %}
+<link rel="stylesheet" href='assets/css/styles2.css'>
+<section class="hero">
+    <div class="background-image" style="background-image: url({% static 'assets/img/island.jpg' %});"></div>
+    <h1>Requests</h1>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    <br>
+  
+    <table id="example" class="table table-success table-striped" style="width:100%">
+        <thead>
+        <tr>
+            <th>U</th>
+            <th>R</th>
+            <th>RN</th>
+            <th>E</th>
+            <th>EL</th>
+            <th>HD</th>
+            <th>S</th>
+            <th>V</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for each_request in requests %}
+        <tr>
+            <td>{{each_request.user}}</td>
+            <td>{{each_request.requester.first_name}} {{each_request.requester.last_name}}</td>
+            <td>{{each_request.request_number}}</td>
+            <td>{{each_request.event.name}}</td>
+            <td>{{each_request.event.lead}}</td>
+            <td>
+                {% for each_hd in each_request.hard_drive.all %}
+                {{each_hd.serial_number}}<br>
+                {% endfor %}
+            </td>
+            <td>{{each_request.status}}</td>
+            <td>
+                <a class="submit-button" href="{% url 'requester_amendment' each_request.id %}">View</a>
+            </td>
+        </tr>
+
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>U</th>
+            <th>R</th>
+            <th>RN</th>
+            <th>E</th>
+            <th>EL</th>
+            <th>HD</th>
+            <th>S</th>
+            <th>V</th>
+        </tr>
+        </tfoot>
+    </table>
+
+
+</section>
+
+{% endblock %}
