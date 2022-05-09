@@ -25,7 +25,7 @@ urlpatterns = [
     path('maintainer_hard_drives/', views.maintainer_hard_drives, name='m_hard_drives'),
     path('maintainer_messages/', views.maintainer_messages, name='m_messages'),
     path('maintainer_reports/', views.maintainer_reports, name='m_reports'),
-    path('maintainer_configurations', views.maintainer_configurations, name='m_configurations'),
+    path('maintainer_configurations/', views.maintainer_configurations, name='m_configurations'),
     path('update_hard_drive/<str:id>/', views.update_hard_drive, name='u_hard_drive'),
     path('delete_hard_drive/<str:id>/', views.delete_hard_drive, name='d_hard_drive'),
 
