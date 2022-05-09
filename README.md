@@ -49,7 +49,7 @@ Platform/Installation Instructions for Windows Machine
 Platform/Installation Instructions for Mac Machine
     Github Repository: https://github.com/KevinAofia/HDTS.git
 
-    2. Downloading and setting up python 
+    1. Downloading and setting up python 
         - Go to brew.sh and download it
         - Open up a terminal and type the following:
             brew install python3
@@ -60,13 +60,13 @@ Platform/Installation Instructions for Mac Machine
             pip
             If no errors were displayed, you are good to go. If you see any errors, you probably didn't install python right
 
-    1. Setting up Django
+    2. Setting up Django
         - After setting up python open up a terminal and type:
             pip install django
         - If after installing it, it says that pip might need an upgrade, type the following:
             pip install --upgrade pip
     
-    4. Download VisualStudio Code or any Software that allows you to use Django and mysqli
+    3. Download VisualStudio Code or any Software that allows you to use Django and mysqli
         - If you want to use Visual Studio Code, you can use this link https://code.visualstudio.com/download
         - Add python as an extension
         - Add django as an extension
