@@ -72,7 +72,7 @@ Platform/Installation Instructions for Mac Machine
         - Add django as an extension
         - You might need to restart your pc for this to make changes in the system
 
-    5. Code:
+    4. Code:
         - Create a folder in your PC/laptop, this folder will contain all the contents downloaded from the github repository
         - Open up Visual Studio Code and open the folder you want the project to be in
         - Open up a terminal and type the following:
@@ -82,7 +82,7 @@ Platform/Installation Instructions for Mac Machine
             
         - The previous step will allow you to clone the project and allow you to make any changes to it
 
-    6. How to run the code:
+    5. How to run the code:
         - Open up a terminal and cd into wherever you find the manage.py file
         - If you type "dir" and you see manage.py as one of the files within the directory you're in, you are in the right place!
         - Type the following in the same terminal:
